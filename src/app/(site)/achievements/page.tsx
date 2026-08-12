@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
+import { pageMetadata } from "@/lib/page-metadata";
 import { formatMonthYear } from "@/lib/utils";
 import { getAchievements } from "@/sanity/lib/queries";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Achievements",
-};
+  description: "Hackathon wins, awards, and other achievements.",
+});
 
 export default async function AchievementsPage() {
   const achievements = await getAchievements();

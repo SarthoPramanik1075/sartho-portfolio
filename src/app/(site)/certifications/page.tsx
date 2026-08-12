@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { pageMetadata } from "@/lib/page-metadata";
 import { formatMonthYear } from "@/lib/utils";
 import { urlFor } from "@/sanity/lib/image";
 import { getCertifications } from "@/sanity/lib/queries";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Certifications",
-};
+  description: "Professional certifications and credentials.",
+});
 
 export default async function CertificationsPage() {
   const certifications = await getCertifications();

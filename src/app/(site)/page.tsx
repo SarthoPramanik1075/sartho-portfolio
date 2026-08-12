@@ -1,7 +1,10 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
+import { personJsonLd } from "@/lib/json-ld";
+import { getSiteUrl } from "@/lib/site-config";
 import { getAbout, getFeaturedProjects } from "@/sanity/lib/queries";
 
 export default async function Home() {
@@ -10,8 +13,11 @@ export default async function Home() {
     getFeaturedProjects(),
   ]);
 
+  const person = personJsonLd(about, getSiteUrl());
+
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-24 px-6 py-20">
+      {person ? <JsonLd data={person} /> : null}
       <section className="flex flex-col gap-6">
         {about?.availabilityStatus ? (
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border/60 px-3 py-1 text-xs text-muted-foreground">

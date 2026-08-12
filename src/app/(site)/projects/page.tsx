@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ProjectCard } from "@/components/project-card";
+import { pageMetadata } from "@/lib/page-metadata";
 import { cn } from "@/lib/utils";
 import { PROJECT_CATEGORIES } from "@/lib/project-constants";
 import { getAllProjects } from "@/sanity/lib/queries";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Projects",
-};
+  description: "Software projects across hackathons, research, client work, and open source.",
+});
 
 export default async function ProjectsPage(props: PageProps<"/projects">) {
   const { category } = await props.searchParams;
@@ -54,7 +55,7 @@ export default async function ProjectsPage(props: PageProps<"/projects">) {
       {filteredProjects.length ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project._id} project={project} />
+            <ProjectCard key={project._id} project={project} headingLevel="h2" />
           ))}
         </div>
       ) : (

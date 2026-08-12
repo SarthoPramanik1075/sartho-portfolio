@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { JsonLd } from "@/components/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { breadcrumbJsonLd, scholarlyArticleJsonLd } from "@/lib/json-ld";
+import { pageMetadata } from "@/lib/page-metadata";
+import { getSiteUrl } from "@/lib/site-config";
 import { formatMonthYear } from "@/lib/utils";
 import { getResearchBySlug, getResearchSlugs } from "@/sanity/lib/queries";
 
@@ -20,10 +24,7 @@ export async function generateMetadata(
 
   if (!entry) return {};
 
-  return {
-    title: entry.title,
-    description: entry.abstract,
-  };
+  return pageMetadata({ title: entry.title, description: entry.abstract });
 }
 
 export default async function ResearchDetailPage(props: PageProps<"/research/[slug]">) {
@@ -32,8 +33,18 @@ export default async function ResearchDetailPage(props: PageProps<"/research/[sl
 
   if (!entry) notFound();
 
+  const siteUrl = getSiteUrl();
+  const scholarlyArticle = scholarlyArticleJsonLd(entry, siteUrl);
+  const breadcrumb = breadcrumbJsonLd([
+    { name: "Home", url: siteUrl },
+    { name: "Research", url: `${siteUrl}/research` },
+    { name: entry.title, url: `${siteUrl}/research/${entry.slug.current}` },
+  ]);
+
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8 px-6 py-20">
+      <JsonLd data={scholarlyArticle} />
+      <JsonLd data={breadcrumb} />
       <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center gap-1.5">
           <Badge variant="secondary">{entry.status}</Badge>

@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-
 import { Button } from "@/components/ui/button";
+import { pageMetadata } from "@/lib/page-metadata";
 import { getAbout, getSiteSettings } from "@/sanity/lib/queries";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
-};
+  description: "Get in touch by email or social media.",
+});
 
 export default async function ContactPage() {
   const [settings, about] = await Promise.all([getSiteSettings(), getAbout()]);

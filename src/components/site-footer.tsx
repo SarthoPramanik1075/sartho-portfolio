@@ -8,7 +8,7 @@ export async function SiteFooter() {
   const footerText = settings?.footerText || `© ${year} ${settings?.siteTitle || 'Sartho Pramanik'}`
 
   return (
-    <footer className="border-t border-border/60">
+    <footer className="border-t border-border/60 print:hidden">
       <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <p>{footerText}</p>
         {about?.socialLinks?.length ? (

@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
+import { pageMetadata } from "@/lib/page-metadata";
 import { getResearchList } from "@/sanity/lib/queries";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Research",
-};
+  description: "Publications, preprints, and ongoing research work.",
+});
 
 export default async function ResearchPage() {
   const research = await getResearchList();

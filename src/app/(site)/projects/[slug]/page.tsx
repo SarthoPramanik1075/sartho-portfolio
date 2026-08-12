@@ -3,9 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { JsonLd } from "@/components/json-ld";
 import { RichText } from "@/components/rich-text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { breadcrumbJsonLd, creativeWorkJsonLd } from "@/lib/json-ld";
+import { pageMetadata } from "@/lib/page-metadata";
+import { getSiteUrl } from "@/lib/site-config";
 import { formatMonthYear } from "@/lib/utils";
 import { urlFor } from "@/sanity/lib/image";
 import { getProjectBySlug, getProjectSlugs } from "@/sanity/lib/queries";
@@ -23,10 +27,7 @@ export async function generateMetadata(
 
   if (!project) return {};
 
-  return {
-    title: project.title,
-    description: project.summary,
-  };
+  return pageMetadata({ title: project.title, description: project.summary });
 }
 
 export default async function ProjectDetailPage(props: PageProps<"/projects/[slug]">) {
@@ -39,8 +40,18 @@ export default async function ProjectDetailPage(props: PageProps<"/projects/[slu
     ? urlFor(project.coverImage).width(1200).height(675).fit("crop").url()
     : null;
 
+  const siteUrl = getSiteUrl();
+  const creativeWork = creativeWorkJsonLd(project, siteUrl);
+  const breadcrumb = breadcrumbJsonLd([
+    { name: "Home", url: siteUrl },
+    { name: "Projects", url: `${siteUrl}/projects` },
+    { name: project.title, url: `${siteUrl}/projects/${project.slug.current}` },
+  ]);
+
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-10 px-6 py-20">
+      <JsonLd data={creativeWork} />
+      <JsonLd data={breadcrumb} />
       <div className="flex flex-col gap-4">
         <div className="flex flex-wrap gap-1.5">
           {project.category?.map((cat) => (

@@ -5,7 +5,13 @@ import { Badge } from '@/components/ui/badge'
 import { urlFor } from '@/sanity/lib/image'
 import type { ProjectCard as ProjectCardData } from '@/sanity/lib/queries'
 
-export function ProjectCard({ project }: { project: ProjectCardData }) {
+export function ProjectCard({
+  project,
+  headingLevel: Heading = 'h3',
+}: {
+  project: ProjectCardData
+  headingLevel?: 'h2' | 'h3'
+}) {
   const imageUrl = project.coverImage
     ? urlFor(project.coverImage).width(640).height(400).fit('crop').url()
     : null
@@ -39,7 +45,9 @@ export function ProjectCard({ project }: { project: ProjectCardData }) {
           ))}
           {project.status ? <Badge variant="outline">{project.status}</Badge> : null}
         </div>
-        <h3 className="font-heading text-lg font-medium tracking-tight">{project.title}</h3>
+        <Heading className="font-heading text-lg font-medium tracking-tight">
+          {project.title}
+        </Heading>
         <p className="line-clamp-2 text-sm text-muted-foreground">{project.summary}</p>
         {project.techStack?.length ? (
           <div className="mt-auto flex flex-wrap gap-1.5 pt-2 text-xs text-muted-foreground">

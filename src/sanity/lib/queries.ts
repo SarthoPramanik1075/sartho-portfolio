@@ -229,6 +229,12 @@ export const TESTIMONIALS_QUERY = groq`
   }
 `
 
+export const SKILLS_QUERY = groq`
+  *[_type == "skill"] | order(category asc, name asc){
+    _id, name, category, icon
+  }
+`
+
 export async function getAbout() {
   const { data } = await sanityFetch({ query: ABOUT_QUERY })
   return data as About | null
@@ -292,4 +298,9 @@ export async function getCertifications() {
 export async function getTestimonials() {
   const { data } = await sanityFetch({ query: TESTIMONIALS_QUERY })
   return data as Testimonial[]
+}
+
+export async function getAllSkills() {
+  const { data } = await sanityFetch({ query: SKILLS_QUERY })
+  return data as SkillRef[]
 }

@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 
 import { RichText } from "@/components/rich-text";
 import { Badge } from "@/components/ui/badge";
+import { pageMetadata } from "@/lib/page-metadata";
 import { formatMonthYear } from "@/lib/utils";
 import { urlFor } from "@/sanity/lib/image";
 import { getExperienceList } from "@/sanity/lib/queries";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Experience",
-};
+  description: "Work history and professional experience.",
+});
 
 export default async function ExperiencePage() {
   const experience = await getExperienceList();

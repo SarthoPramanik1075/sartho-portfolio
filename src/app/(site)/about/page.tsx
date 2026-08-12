@@ -2,16 +2,21 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
+import { JsonLd } from "@/components/json-ld";
 import { RichText } from "@/components/rich-text";
+import { personJsonLd } from "@/lib/json-ld";
+import { pageMetadata } from "@/lib/page-metadata";
+import { getSiteUrl } from "@/lib/site-config";
 import { urlFor } from "@/sanity/lib/image";
-import { getAbout } from "@/sanity/lib/queries";
+import { getAbout, getSiteSettings } from "@/sanity/lib/queries";
 
-export const metadata: Metadata = {
-  title: "About",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const about = await getAbout();
+  return pageMetadata({ title: "About", description: about?.shortBio });
+}
 
 export default async function AboutPage() {
-  const about = await getAbout();
+  const [about, settings] = await Promise.all([getAbout(), getSiteSettings()]);
 
   if (!about) {
     return (
@@ -26,14 +31,16 @@ export default async function AboutPage() {
   const photoUrl = about.profilePhoto
     ? urlFor(about.profilePhoto).width(480).height(480).fit("crop").url()
     : null;
+  const person = personJsonLd(about, getSiteUrl());
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-10 px-6 py-20">
+      {person ? <JsonLd data={person} /> : null}
       <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
         {photoUrl ? (
           <Image
             src={photoUrl}
-            alt={about.headline}
+            alt={`Photo of ${settings?.siteTitle || "Sartho Pramanik"}`}
             width={128}
             height={128}
             className="size-32 shrink-0 rounded-full object-cover"
