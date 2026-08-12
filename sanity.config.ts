@@ -10,7 +10,7 @@ import {structureTool} from 'sanity/structure'
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from './src/sanity/env'
-import {schema} from './src/sanity/schemaTypes'
+import {schema, singletonTypes} from './src/sanity/schemaTypes'
 import {structure} from './src/sanity/structure'
 
 export default defineConfig({
@@ -25,4 +25,14 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({defaultApiVersion: apiVersion}),
   ],
+  document: {
+    // Singletons (About, Site Settings) can't be duplicated or deleted,
+    // and don't show up in the "create new document" menu.
+    actions: (input, context) =>
+      singletonTypes.has(context.schemaType)
+        ? input.filter(({action}) => action && ['publish', 'discardChanges', 'restore'].includes(action))
+        : input,
+    newDocumentOptions: (input) =>
+      input.filter((item) => !singletonTypes.has(item.templateId)),
+  },
 })
