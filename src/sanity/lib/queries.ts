@@ -65,6 +65,7 @@ export interface ProjectCard {
   summary: string
   coverImage?: SanityImageValue
   category: string[]
+  status?: string
   techStack?: SkillRef[]
   links?: ProjectLinks
   startDate?: string
@@ -107,6 +108,12 @@ export interface Research {
   researchInterests?: string[]
 }
 
+export interface ResearchDetail extends Research {
+  doiOrLink?: string
+  pdf?: { asset?: { url: string } }
+  relatedProject?: { title: string; slug: { current: string } }
+}
+
 export interface Achievement {
   _id: string
   title: string
@@ -139,7 +146,7 @@ export interface Testimonial {
 }
 
 const PROJECT_CARD_FIELDS = groq`
-  _id, title, slug, summary, coverImage, category,
+  _id, title, slug, summary, coverImage, category, status,
   techStack[]->{name, icon},
   links, startDate, endDate, featured
 `
@@ -178,6 +185,8 @@ export const PROJECT_BY_SLUG_QUERY = groq`
   }
 `
 
+export const PROJECT_SLUGS_QUERY = groq`*[_type == "project" && defined(slug.current)].slug.current`
+
 export const EXPERIENCE_LIST_QUERY = groq`
   *[_type == "experience"] | order(startDate desc){
     _id, organization, role, logo, location, employmentType,
@@ -191,6 +200,16 @@ export const RESEARCH_LIST_QUERY = groq`
     _id, title, slug, abstract, publicationVenue, status, authors, date, researchInterests
   }
 `
+
+export const RESEARCH_BY_SLUG_QUERY = groq`
+  *[_type == "research" && slug.current == $slug][0]{
+    _id, title, slug, abstract, publicationVenue, status, authors, date, researchInterests,
+    doiOrLink, pdf{asset->{url}},
+    relatedProject->{title, slug}
+  }
+`
+
+export const RESEARCH_SLUGS_QUERY = groq`*[_type == "research" && defined(slug.current)].slug.current`
 
 export const ACHIEVEMENTS_QUERY = groq`
   *[_type == "achievement"] | order(date desc){
@@ -235,6 +254,11 @@ export async function getProjectBySlug(slug: string) {
   return data as ProjectDetail | null
 }
 
+export async function getProjectSlugs() {
+  const { data } = await sanityFetch({ query: PROJECT_SLUGS_QUERY })
+  return data as string[]
+}
+
 export async function getExperienceList() {
   const { data } = await sanityFetch({ query: EXPERIENCE_LIST_QUERY })
   return data as Experience[]
@@ -243,6 +267,16 @@ export async function getExperienceList() {
 export async function getResearchList() {
   const { data } = await sanityFetch({ query: RESEARCH_LIST_QUERY })
   return data as Research[]
+}
+
+export async function getResearchBySlug(slug: string) {
+  const { data } = await sanityFetch({ query: RESEARCH_BY_SLUG_QUERY, params: { slug } })
+  return data as ResearchDetail | null
+}
+
+export async function getResearchSlugs() {
+  const { data } = await sanityFetch({ query: RESEARCH_SLUGS_QUERY })
+  return data as string[]
 }
 
 export async function getAchievements() {

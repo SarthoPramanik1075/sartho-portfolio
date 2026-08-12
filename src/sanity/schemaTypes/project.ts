@@ -1,6 +1,8 @@
 import { FolderGit2 } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
 
+import { PROJECT_CATEGORIES, PROJECT_STATUSES } from '@/lib/project-constants'
+
 export const project = defineType({
   name: 'project',
   title: 'Project',
@@ -38,9 +40,19 @@ export const project = defineType({
       type: 'array',
       of: [{ type: 'string' }],
       options: {
-        list: ['Hackathon', 'Research', 'Client Work', 'Personal/OSS', 'Academic'],
+        list: [...PROJECT_CATEGORIES],
       },
       validation: (rule) => rule.required().min(1),
+    }),
+    defineField({
+      name: 'status',
+      type: 'string',
+      description: 'Current state of the project',
+      options: {
+        list: [...PROJECT_STATUSES],
+        layout: 'radio',
+      },
+      initialValue: 'Completed',
     }),
     defineField({
       name: 'techStack',

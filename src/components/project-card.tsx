@@ -6,16 +6,13 @@ import { urlFor } from '@/sanity/lib/image'
 import type { ProjectCard as ProjectCardData } from '@/sanity/lib/queries'
 
 export function ProjectCard({ project }: { project: ProjectCardData }) {
-  const href = project.links?.live || project.links?.repo || project.links?.demo || '#'
   const imageUrl = project.coverImage
     ? urlFor(project.coverImage).width(640).height(400).fit('crop').url()
     : null
 
   return (
     <Link
-      href={href}
-      target={href !== '#' ? '_blank' : undefined}
-      rel={href !== '#' ? 'noopener noreferrer' : undefined}
+      href={`/projects/${project.slug.current}`}
       className="group flex flex-col overflow-hidden rounded-xl border border-border/60 bg-card transition-colors hover:border-border"
     >
       <div className="relative aspect-[8/5] w-full overflow-hidden bg-muted">
@@ -40,6 +37,7 @@ export function ProjectCard({ project }: { project: ProjectCardData }) {
               {cat}
             </Badge>
           ))}
+          {project.status ? <Badge variant="outline">{project.status}</Badge> : null}
         </div>
         <h3 className="font-heading text-lg font-medium tracking-tight">{project.title}</h3>
         <p className="line-clamp-2 text-sm text-muted-foreground">{project.summary}</p>

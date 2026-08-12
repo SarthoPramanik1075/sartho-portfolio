@@ -1,10 +1,22 @@
+import { Menu } from 'lucide-react'
 import Link from 'next/link'
 
 import { ThemeToggle } from '@/components/theme-toggle'
+import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import { getSiteSettings } from '@/sanity/lib/queries'
 
 const FALLBACK_NAV_LINKS = [
+  { label: 'Projects', href: '/projects' },
   { label: 'Experience', href: '/experience' },
+  { label: 'Research', href: '/research' },
+  { label: 'Achievements', href: '/achievements' },
+  { label: 'Certifications', href: '/certifications' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]
@@ -20,7 +32,7 @@ export async function SiteHeader() {
         <Link href="/" className="font-heading text-lg font-medium tracking-tight">
           {siteTitle}
         </Link>
-        <nav className="hidden items-center gap-8 text-sm text-muted-foreground sm:flex">
+        <nav className="hidden items-center gap-6 text-sm text-muted-foreground lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -31,7 +43,25 @@ export async function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <ThemeToggle />
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          <div className="lg:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={<Button variant="ghost" size="icon" aria-label="Open menu" />}
+              >
+                <Menu />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {navLinks.map((link) => (
+                  <DropdownMenuItem key={link.href} render={<Link href={link.href} />}>
+                    {link.label}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
       </div>
     </header>
   )
