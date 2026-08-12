@@ -17,6 +17,7 @@ const FALLBACK_NAV_LINKS = [
   { label: 'Research', href: '/research' },
   { label: 'Achievements', href: '/achievements' },
   { label: 'Certifications', href: '/certifications' },
+  { label: 'Testimonials', href: '/testimonials' },
   { label: 'About', href: '/about' },
   { label: 'Resume', href: '/resume' },
   { label: 'Contact', href: '/contact' },
@@ -33,7 +34,7 @@ export async function SiteHeader() {
         <Link href="/" className="font-heading text-lg font-medium tracking-tight">
           {siteTitle}
         </Link>
-        <nav className="hidden items-center gap-6 text-sm text-muted-foreground lg:flex">
+        <nav className="hidden items-center gap-4 text-sm text-muted-foreground lg:flex xl:gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
