@@ -19,7 +19,7 @@ export default async function AchievementsPage() {
 
       {achievements.length === 0 ? (
         <p className="text-sm text-muted-foreground">
-          No achievements yet — add one in Sanity Studio.
+          Achievements will be added here soon.
         </p>
       ) : (
         <div className="flex flex-col gap-6">

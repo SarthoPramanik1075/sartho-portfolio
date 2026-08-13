@@ -49,8 +49,8 @@ export default async function ResumePage() {
         </div>
         {!about?.resumeFile?.asset?.url ? (
           <p className="text-sm text-muted-foreground">
-            No PDF uploaded yet — add one to the Resume File field on the About document in
-            Sanity Studio to enable a direct download.
+            A downloadable PDF isn&rsquo;t available yet — use the print button above to save
+            this page as a PDF.
           </p>
         ) : null}
       </div>
@@ -139,7 +139,7 @@ export default async function ResumePage() {
 
       {!experience.length && !skills.length && !certifications.length ? (
         <p className="text-sm text-muted-foreground">
-          No resume content yet — add Experience, Skills, and Certifications in Sanity Studio.
+          Resume content will be added here soon.
         </p>
       ) : null}
     </div>

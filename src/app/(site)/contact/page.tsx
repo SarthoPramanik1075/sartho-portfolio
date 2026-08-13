@@ -30,7 +30,7 @@ export default async function ContactPage() {
           </Button>
         ) : (
           <p className="text-sm text-muted-foreground">
-            No contact email set yet — add one in Site Settings in Sanity Studio.
+            An email address will be added here soon.
           </p>
         )}
         {about?.socialLinks?.map((link) => (

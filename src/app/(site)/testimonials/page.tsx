@@ -19,7 +19,7 @@ export default async function TestimonialsPage() {
 
       {testimonials.length === 0 ? (
         <p className="text-sm text-muted-foreground">
-          No testimonials yet — add one in Sanity Studio.
+          Testimonials from collaborators and mentors will be added here soon.
         </p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2">

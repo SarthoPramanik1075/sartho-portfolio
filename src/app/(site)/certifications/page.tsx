@@ -20,7 +20,7 @@ export default async function CertificationsPage() {
 
       {certifications.length === 0 ? (
         <p className="text-sm text-muted-foreground">
-          No certifications yet — add one in Sanity Studio.
+          Certifications will be added here soon.
         </p>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2">

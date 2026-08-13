@@ -61,7 +61,7 @@ export default async function ProjectsPage(props: PageProps<"/projects">) {
       ) : (
         <p className="text-sm text-muted-foreground">
           {projects.length === 0
-            ? "No projects yet — add one in Sanity Studio."
+            ? "Projects will be added here soon."
             : "No projects in this category yet."}
         </p>
       )}

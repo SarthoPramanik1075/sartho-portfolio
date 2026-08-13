@@ -21,7 +21,7 @@ export default async function ExperiencePage() {
 
       {experience.length === 0 ? (
         <p className="text-sm text-muted-foreground">
-          No experience entries yet — add one in Sanity Studio.
+          Experience details will be added here soon.
         </p>
       ) : (
         <div className="flex flex-col gap-10">

@@ -18,7 +18,7 @@ export default async function ResearchPage() {
 
       {research.length === 0 ? (
         <p className="text-sm text-muted-foreground">
-          No research entries yet — add one in Sanity Studio.
+          Research publications will be added here soon.
         </p>
       ) : (
         <div className="flex flex-col gap-8">

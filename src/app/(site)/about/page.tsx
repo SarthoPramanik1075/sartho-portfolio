@@ -22,7 +22,7 @@ export default async function AboutPage() {
     return (
       <div className="mx-auto max-w-3xl px-6 py-20">
         <p className="text-sm text-muted-foreground">
-          No About content yet — fill in the About document in Sanity Studio.
+          Content coming soon.
         </p>
       </div>
     );

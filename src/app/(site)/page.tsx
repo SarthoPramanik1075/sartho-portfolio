@@ -26,7 +26,7 @@ export default async function Home() {
           </span>
         ) : null}
         <h1 className="max-w-2xl font-heading text-4xl font-medium tracking-tight sm:text-5xl">
-          {about?.headline || "Content coming soon — add your headline in Sanity Studio."}
+          {about?.headline || "Content coming soon."}
         </h1>
         {about?.shortBio ? (
           <p className="max-w-xl text-lg text-muted-foreground">{about.shortBio}</p>
@@ -78,8 +78,7 @@ export default async function Home() {
           </div>
         ) : (
           <p className="text-sm text-muted-foreground">
-            No featured projects yet — mark a project as &ldquo;Featured&rdquo; in
-            Sanity Studio to have it show up here.
+            Featured projects will appear here soon.
           </p>
         )}
       </section>
