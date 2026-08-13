@@ -18,6 +18,18 @@ export const testimonial = defineType({
     defineField({ name: 'authorPhoto', type: 'image' }),
     defineField({ name: 'linkedInUrl', type: 'url' }),
     defineField({ name: 'relatedProject', type: 'reference', to: [{ type: 'project' }] }),
+    defineField({
+      name: 'order',
+      type: 'number',
+      description: 'Lower numbers sort first',
+    }),
+  ],
+  orderings: [
+    {
+      title: 'Manual order',
+      name: 'orderAsc',
+      by: [{ field: 'order', direction: 'asc' }],
+    },
   ],
   preview: {
     select: { title: 'authorName', subtitle: 'authorOrg', media: 'authorPhoto' },

@@ -224,7 +224,7 @@ export const CERTIFICATIONS_QUERY = groq`
 `
 
 export const TESTIMONIALS_QUERY = groq`
-  *[_type == "testimonial"]{
+  *[_type == "testimonial"] | order(order asc, _createdAt asc){
     _id, quote, authorName, authorRole, authorOrg, authorPhoto, linkedInUrl
   }
 `
