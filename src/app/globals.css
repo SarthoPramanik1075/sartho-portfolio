@@ -49,24 +49,24 @@
 }
 
 :root {
-  --background: #f5f6f7;
-  --foreground: #14171a;
-  --card: #ffffff;
-  --card-foreground: #14171a;
-  --popover: #ffffff;
-  --popover-foreground: #14171a;
-  --primary: #3a5ba0;
-  --primary-foreground: #f7f9fc;
-  --secondary: #eceef1;
-  --secondary-foreground: #14171a;
-  --muted: #eceef1;
-  --muted-foreground: #5b626d;
-  --accent: #eaf0f9;
-  --accent-foreground: #1c3766;
+  --background: #e9f1fb;
+  --foreground: #0f2138;
+  --card: #f6faff;
+  --card-foreground: #0f2138;
+  --popover: #f6faff;
+  --popover-foreground: #0f2138;
+  --primary: #2f5fd6;
+  --primary-foreground: #f6faff;
+  --secondary: #dbe7f8;
+  --secondary-foreground: #0f2138;
+  --muted: #dbe7f8;
+  --muted-foreground: #4c6285;
+  --accent: #d6e5fa;
+  --accent-foreground: #163467;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #dfe2e6;
-  --input: #dfe2e6;
-  --ring: #3a5ba0;
+  --border: #c4d7ee;
+  --input: #c4d7ee;
+  --ring: #2f5fd6;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -84,23 +84,23 @@
 }
 
 .dark {
-  --background: #0b0f14;
-  --foreground: #e7ecf2;
-  --card: #121820;
-  --card-foreground: #e7ecf2;
-  --popover: #121820;
-  --popover-foreground: #e7ecf2;
+  --background: #0a1220;
+  --foreground: #e6edf7;
+  --card: #101c30;
+  --card-foreground: #e6edf7;
+  --popover: #101c30;
+  --popover-foreground: #e6edf7;
   --primary: #5b8fff;
-  --primary-foreground: #0b0f14;
-  --secondary: #171d26;
-  --secondary-foreground: #e7ecf2;
-  --muted: #171d26;
-  --muted-foreground: #8792a0;
-  --accent: #171d26;
-  --accent-foreground: #e7ecf2;
+  --primary-foreground: #0a1220;
+  --secondary: #16233c;
+  --secondary-foreground: #e6edf7;
+  --muted: #16233c;
+  --muted-foreground: #8fa2c2;
+  --accent: #16233c;
+  --accent-foreground: #e6edf7;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: #1f2733;
-  --input: #1f2733;
+  --border: #1c2c48;
+  --input: #1c2c48;
   --ring: #5b8fff;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
