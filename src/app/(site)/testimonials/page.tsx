@@ -14,18 +14,18 @@ export default async function TestimonialsPage() {
   const testimonials = await getTestimonials();
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-20">
-      <h1 className="font-heading text-3xl font-medium tracking-tight">Testimonials</h1>
+    <div className="mx-auto flex max-w-3xl flex-col gap-10 px-6 py-20">
+      <h1 className="font-heading text-3xl font-semibold tracking-tight">Testimonials</h1>
 
       {testimonials.length === 0 ? (
         <p className="text-sm text-muted-foreground">
           Testimonials from collaborators and mentors will be added here soon.
         </p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="flex flex-col">
           {testimonials.map((testimonial) => {
             const photoUrl = testimonial.authorPhoto
-              ? urlFor(testimonial.authorPhoto).width(96).height(96).fit("crop").url()
+              ? urlFor(testimonial.authorPhoto).width(80).height(80).fit("crop").url()
               : null;
             const role = [testimonial.authorRole, testimonial.authorOrg]
               .filter(Boolean)
@@ -34,12 +34,9 @@ export default async function TestimonialsPage() {
             return (
               <figure
                 key={testimonial._id}
-                className="flex flex-col gap-4 rounded-xl border border-border/60 p-6"
+                className="flex flex-col gap-4 border-t border-border/60 py-8 first:border-t-0 first:pt-0 sm:flex-row sm:gap-8"
               >
-                <blockquote className="font-heading text-lg leading-snug tracking-tight">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-auto flex items-center gap-3">
+                <figcaption className="flex shrink-0 items-center gap-3 sm:w-44 sm:flex-col sm:items-start">
                   {photoUrl ? (
                     <Image
                       src={photoUrl}
@@ -55,16 +52,21 @@ export default async function TestimonialsPage() {
                         href={testimonial.linkedInUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium hover:underline"
+                        className="font-medium hover:text-primary"
                       >
                         {testimonial.authorName}
                       </Link>
                     ) : (
                       <span className="font-medium">{testimonial.authorName}</span>
                     )}
-                    {role ? <span className="text-muted-foreground">{role}</span> : null}
+                    {role ? (
+                      <span className="font-mono text-[11px] text-muted-foreground">{role}</span>
+                    ) : null}
                   </div>
                 </figcaption>
+                <blockquote className="font-heading text-base leading-relaxed tracking-tight">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </blockquote>
               </figure>
             );
           })}

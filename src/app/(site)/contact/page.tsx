@@ -14,7 +14,7 @@ export default async function ContactPage() {
   return (
     <div className="mx-auto flex max-w-2xl flex-col gap-8 px-6 py-20">
       <div className="flex flex-col gap-3">
-        <h1 className="font-heading text-3xl font-medium tracking-tight">
+        <h1 className="font-heading text-3xl font-semibold tracking-tight">
           Get in touch
         </h1>
         <p className="text-muted-foreground">

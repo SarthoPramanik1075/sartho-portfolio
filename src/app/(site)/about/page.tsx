@@ -47,11 +47,11 @@ export default async function AboutPage() {
           />
         ) : null}
         <div className="flex flex-col gap-2">
-          <h1 className="font-heading text-3xl font-medium tracking-tight">
+          <h1 className="font-heading text-3xl font-semibold tracking-tight">
             {about.headline}
           </h1>
           {about.location ? (
-            <p className="text-sm text-muted-foreground">{about.location}</p>
+            <p className="font-mono text-xs text-muted-foreground uppercase">{about.location}</p>
           ) : null}
         </div>
       </div>

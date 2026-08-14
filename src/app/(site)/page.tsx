@@ -19,13 +19,12 @@ export default async function Home() {
     <div className="mx-auto flex max-w-5xl flex-col gap-24 px-6 py-20">
       {person ? <JsonLd data={person} /> : null}
       <section className="flex flex-col gap-6">
-        {about?.availabilityStatus ? (
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border/60 px-3 py-1 text-xs text-muted-foreground">
-            <span className="size-1.5 rounded-full bg-emerald-500" />
-            {about.availabilityStatus}
-          </span>
-        ) : null}
-        <h1 className="max-w-2xl font-heading text-4xl font-medium tracking-tight sm:text-5xl">
+        <p className="font-mono text-xs tracking-wide text-primary uppercase">
+          {[about?.availabilityStatus, about?.location ? `location · ${about.location}` : null]
+            .filter(Boolean)
+            .join(' — ')}
+        </p>
+        <h1 className="max-w-2xl font-heading text-4xl font-bold tracking-tight sm:text-5xl">
           {about?.headline || "Content coming soon."}
         </h1>
         {about?.shortBio ? (
@@ -49,35 +48,36 @@ export default async function Home() {
       </section>
 
       {about?.personaHighlights?.length ? (
-        <section className="grid gap-4 sm:grid-cols-3">
+        <section className="flex flex-col">
+          <p className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
+            who this is for
+          </p>
           {about.personaHighlights.map((highlight) => (
             <div
               key={highlight.audience}
-              className="rounded-xl border border-border/60 p-5"
+              className="flex flex-col gap-1 border-t border-border/60 py-5 first:border-t-0 sm:flex-row sm:gap-6"
             >
-              <h2 className="font-heading text-sm font-medium tracking-tight text-muted-foreground">
-                {highlight.audience}
+              <h2 className="shrink-0 font-mono text-xs text-primary sm:w-28">
+                {highlight.audience.toLowerCase()}
               </h2>
-              <p className="mt-2 text-sm">{highlight.blurb}</p>
+              <p className="text-sm text-muted-foreground">{highlight.blurb}</p>
             </div>
           ))}
         </section>
       ) : null}
 
-      <section className="flex flex-col gap-8">
-        <div className="flex items-baseline justify-between">
-          <h2 className="font-heading text-2xl font-medium tracking-tight">
-            Featured work
-          </h2>
-        </div>
+      <section className="flex flex-col gap-2">
+        <p className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
+          index — projects
+        </p>
         {featuredProjects.length ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-col">
             {featuredProjects.map((project) => (
               <ProjectCard key={project._id} project={project} />
             ))}
           </div>
         ) : (
-          <p className="text-sm text-muted-foreground">
+          <p className="py-6 text-sm text-muted-foreground">
             Featured projects will appear here soon.
           </p>
         )}

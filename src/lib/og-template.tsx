@@ -19,9 +19,9 @@ export function OgCard({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundColor: "#0a0a0a",
+        backgroundColor: "#0b0f14",
         padding: "80px",
-        color: "#fafafa",
+        color: "#e7ecf2",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -29,12 +29,12 @@ export function OgCard({
           <div
             style={{
               display: "flex",
-              fontFamily: "Geist",
+              fontFamily: "IBM Plex Mono",
+              fontWeight: 600,
               fontSize: 28,
-              fontWeight: 500,
               letterSpacing: "0.05em",
               textTransform: "uppercase",
-              color: "#a1a1aa",
+              color: "#5b8fff",
             }}
           >
             {eyebrow}
@@ -43,11 +43,11 @@ export function OgCard({
         <div
           style={{
             display: "flex",
-            fontFamily: "Fraunces",
+            fontFamily: "IBM Plex Mono",
             fontWeight: 700,
-            fontSize: 68,
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
+            fontSize: 64,
+            lineHeight: 1.15,
+            letterSpacing: "-0.01em",
             maxWidth: 980,
           }}
         >
@@ -57,11 +57,11 @@ export function OgCard({
           <div
             style={{
               display: "flex",
-              fontFamily: "Geist",
+              fontFamily: "IBM Plex Sans",
               fontWeight: 500,
               fontSize: 30,
               lineHeight: 1.4,
-              color: "#d4d4d8",
+              color: "#8792a0",
               maxWidth: 900,
             }}
           >
@@ -72,10 +72,10 @@ export function OgCard({
       <div
         style={{
           display: "flex",
-          fontFamily: "Geist",
-          fontWeight: 500,
-          fontSize: 28,
-          color: "#71717a",
+          fontFamily: "IBM Plex Mono",
+          fontWeight: 600,
+          fontSize: 26,
+          color: "#8792a0",
         }}
       >
         {siteName}

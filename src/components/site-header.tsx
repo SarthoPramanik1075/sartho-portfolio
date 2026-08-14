@@ -30,16 +30,19 @@ export async function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md print:hidden">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-        <Link href="/" className="font-heading text-lg font-medium tracking-tight">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        <Link
+          href="/"
+          className="shrink-0 font-heading text-base font-semibold tracking-tight whitespace-nowrap"
+        >
           {siteTitle}
         </Link>
-        <nav className="hidden items-center gap-4 text-sm text-muted-foreground lg:flex xl:gap-6">
+        <nav className="hidden items-center gap-4 font-mono text-xs tracking-wide text-muted-foreground uppercase lg:flex xl:gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-foreground"
+              className="transition-colors hover:text-primary"
             >
               {link.label}
             </Link>

@@ -46,16 +46,14 @@ export default async function ResearchDetailPage(props: PageProps<"/research/[sl
       <JsonLd data={scholarlyArticle} />
       <JsonLd data={breadcrumb} />
       <div className="flex flex-col gap-4">
-        <div className="flex flex-wrap items-center gap-1.5">
-          <Badge variant="secondary">{entry.status}</Badge>
-          {entry.publicationVenue ? (
-            <span className="text-sm text-muted-foreground">{entry.publicationVenue}</span>
-          ) : null}
+        <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-primary uppercase">
+          <span>{entry.status}</span>
+          {entry.publicationVenue ? <span className="text-muted-foreground">{entry.publicationVenue}</span> : null}
           {entry.date ? (
-            <span className="text-sm text-muted-foreground">{formatMonthYear(entry.date)}</span>
+            <span className="text-muted-foreground">{formatMonthYear(entry.date)}</span>
           ) : null}
         </div>
-        <h1 className="font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+        <h1 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
           {entry.title}
         </h1>
         {entry.authors?.length ? (

@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getResearchList } from "@/sanity/lib/queries";
 
@@ -14,35 +13,41 @@ export default async function ResearchPage() {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-10 px-6 py-20">
-      <h1 className="font-heading text-3xl font-medium tracking-tight">Research</h1>
+      <h1 className="font-heading text-3xl font-semibold tracking-tight">Research</h1>
 
       {research.length === 0 ? (
         <p className="text-sm text-muted-foreground">
           Research publications will be added here soon.
         </p>
       ) : (
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col">
           {research.map((entry) => (
             <Link
               key={entry._id}
               href={`/research/${entry.slug.current}`}
-              className="group flex flex-col gap-2 rounded-xl border border-border/60 p-5 transition-colors hover:border-border"
+              className="group flex flex-col gap-2 border-t border-border/60 py-6 first:border-t-0 first:pt-0 sm:flex-row sm:gap-6"
             >
-              <div className="flex flex-wrap items-center gap-1.5">
-                <Badge variant="secondary">{entry.status}</Badge>
-                {entry.publicationVenue ? (
-                  <span className="text-sm text-muted-foreground">{entry.publicationVenue}</span>
+              <div className="shrink-0 font-mono text-xs tracking-wide text-primary uppercase sm:w-28">
+                {entry.status}
+              </div>
+              <div className="flex flex-1 flex-col gap-1.5">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <h2 className="font-heading text-base font-semibold tracking-tight transition-colors group-hover:text-primary">
+                    {entry.title}
+                  </h2>
+                  {entry.publicationVenue ? (
+                    <span className="font-mono text-[11px] text-muted-foreground">
+                      {entry.publicationVenue}
+                    </span>
+                  ) : null}
+                </div>
+                {entry.authors?.length ? (
+                  <p className="text-sm text-muted-foreground">{entry.authors.join(", ")}</p>
+                ) : null}
+                {entry.abstract ? (
+                  <p className="line-clamp-2 text-sm text-muted-foreground">{entry.abstract}</p>
                 ) : null}
               </div>
-              <h2 className="font-heading text-lg font-medium tracking-tight group-hover:underline">
-                {entry.title}
-              </h2>
-              {entry.authors?.length ? (
-                <p className="text-sm text-muted-foreground">{entry.authors.join(", ")}</p>
-              ) : null}
-              {entry.abstract ? (
-                <p className="line-clamp-2 text-sm text-muted-foreground">{entry.abstract}</p>
-              ) : null}
             </Link>
           ))}
         </div>

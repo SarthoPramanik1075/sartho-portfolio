@@ -24,36 +24,36 @@ export default async function ProjectsPage(props: PageProps<"/projects">) {
     <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-20">
       <h1 className="font-heading text-3xl font-medium tracking-tight">Projects</h1>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 font-mono text-xs">
         <Link
           href="/projects"
           className={cn(
-            "rounded-full border px-3 py-1 text-sm transition-colors",
+            "rounded-sm border px-3 py-1 transition-colors",
             !activeCategory
-              ? "border-foreground bg-foreground text-background"
+              ? "border-primary bg-primary text-primary-foreground"
               : "border-border/60 text-muted-foreground hover:border-border hover:text-foreground"
           )}
         >
-          All
+          all
         </Link>
         {PROJECT_CATEGORIES.map((cat) => (
           <Link
             key={cat}
             href={`/projects?category=${encodeURIComponent(cat)}`}
             className={cn(
-              "rounded-full border px-3 py-1 text-sm transition-colors",
+              "rounded-sm border px-3 py-1 transition-colors",
               activeCategory === cat
-                ? "border-foreground bg-foreground text-background"
+                ? "border-primary bg-primary text-primary-foreground"
                 : "border-border/60 text-muted-foreground hover:border-border hover:text-foreground"
             )}
           >
-            {cat}
+            {cat.toLowerCase()}
           </Link>
         ))}
       </div>
 
       {filteredProjects.length ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col">
           {filteredProjects.map((project) => (
             <ProjectCard key={project._id} project={project} headingLevel="h2" />
           ))}

@@ -61,16 +61,16 @@ export default async function ProjectDetailPage(props: PageProps<"/projects/[slu
           ))}
           {project.status ? <Badge variant="outline">{project.status}</Badge> : null}
         </div>
-        <h1 className="font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+        <h1 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
           {project.title}
         </h1>
         <p className="text-lg text-muted-foreground">{project.summary}</p>
-        <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-primary">
           {project.role ? <span>{project.role}</span> : null}
           {project.startDate ? (
             <span>
               {formatMonthYear(project.startDate)} —{" "}
-              {project.endDate ? formatMonthYear(project.endDate) : "Present"}
+              {project.endDate ? formatMonthYear(project.endDate) : "present"}
             </span>
           ) : null}
         </div>
@@ -129,7 +129,7 @@ export default async function ProjectDetailPage(props: PageProps<"/projects/[slu
 
       {project.outcomes?.length ? (
         <div className="flex flex-col gap-2">
-          <h2 className="font-heading text-lg font-medium tracking-tight">Outcomes</h2>
+          <h2 className="font-heading text-lg font-semibold tracking-tight">Outcomes</h2>
           <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
             {project.outcomes.map((outcome) => (
               <li key={outcome}>{outcome}</li>
@@ -155,7 +155,7 @@ export default async function ProjectDetailPage(props: PageProps<"/projects/[slu
 
       {project.techStack?.length ? (
         <div className="flex flex-col gap-2">
-          <h2 className="font-heading text-lg font-medium tracking-tight">Tech stack</h2>
+          <h2 className="font-heading text-lg font-semibold tracking-tight">Tech stack</h2>
           <div className="flex flex-wrap gap-1.5">
             {project.techStack.map((tech) => (
               <Badge key={tech.name} variant="secondary">

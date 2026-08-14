@@ -56,11 +56,11 @@ export default async function ResumePage() {
       </div>
 
       <div className="flex flex-col gap-1">
-        <h1 className="font-heading text-3xl font-medium tracking-tight">
+        <h1 className="font-heading text-3xl font-semibold tracking-tight">
           {settings?.siteTitle || "Sartho Pramanik"}
         </h1>
         {about?.headline ? <p className="text-muted-foreground">{about.headline}</p> : null}
-        <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted-foreground">
+        <div className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted-foreground">
           {settings?.contactEmail ? <span>{settings.contactEmail}</span> : null}
           {about?.location ? <span>{about.location}</span> : null}
           {about?.socialLinks?.map((link) => <span key={link.platform}>{link.url}</span>)}
@@ -71,7 +71,7 @@ export default async function ResumePage() {
 
       {experience.length ? (
         <section className="flex flex-col gap-4">
-          <h2 className="font-heading text-lg font-medium tracking-tight">Experience</h2>
+          <h2 className="font-heading text-lg font-semibold tracking-tight">Experience</h2>
           <div className="flex flex-col gap-5">
             {experience.map((role) => (
               <div key={role._id} className="flex flex-col gap-1">
@@ -79,9 +79,9 @@ export default async function ResumePage() {
                   <p className="font-medium">
                     {role.role} · {role.organization}
                   </p>
-                  <p className="shrink-0 text-sm text-muted-foreground">
+                  <p className="shrink-0 font-mono text-xs text-primary">
                     {formatMonthYear(role.startDate)} —{" "}
-                    {role.endDate ? formatMonthYear(role.endDate) : "Present"}
+                    {role.endDate ? formatMonthYear(role.endDate) : "present"}
                   </p>
                 </div>
                 {role.highlights?.length ? (
@@ -99,7 +99,7 @@ export default async function ResumePage() {
 
       {Object.keys(skillsByCategory).length ? (
         <section className="flex flex-col gap-4">
-          <h2 className="font-heading text-lg font-medium tracking-tight">Skills</h2>
+          <h2 className="font-heading text-lg font-semibold tracking-tight">Skills</h2>
           <div className="flex flex-col gap-3">
             {Object.entries(skillsByCategory).map(([category, names]) => (
               <div key={category} className="flex flex-col gap-1 sm:flex-row sm:gap-3">
@@ -119,7 +119,7 @@ export default async function ResumePage() {
 
       {certifications.length ? (
         <section className="flex flex-col gap-4">
-          <h2 className="font-heading text-lg font-medium tracking-tight">Certifications</h2>
+          <h2 className="font-heading text-lg font-semibold tracking-tight">Certifications</h2>
           <ul className="flex flex-col gap-1 text-sm">
             {certifications.map((cert) => (
               <li key={cert._id} className="flex flex-wrap justify-between gap-x-3">
