@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -5,25 +6,46 @@ import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
 import { personJsonLd } from "@/lib/json-ld";
 import { getSiteUrl } from "@/lib/site-config";
-import { getAbout, getFeaturedProjects } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
+import { getAbout, getFeaturedProjects, getSiteSettings } from "@/sanity/lib/queries";
 
 export default async function Home() {
-  const [about, featuredProjects] = await Promise.all([
+  const [about, settings, featuredProjects] = await Promise.all([
     getAbout(),
+    getSiteSettings(),
     getFeaturedProjects(),
   ]);
 
   const person = personJsonLd(about, getSiteUrl());
+  const photoUrl = about?.profilePhoto
+    ? urlFor(about.profilePhoto).width(160).height(160).fit("crop").url()
+    : null;
+  const siteTitle = settings?.siteTitle || "Sartho Pramanik";
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-24 px-6 py-20">
       {person ? <JsonLd data={person} /> : null}
       <section className="flex flex-col gap-6">
-        <p className="font-mono text-xs tracking-wide text-primary uppercase">
-          {[about?.availabilityStatus, about?.location ? `location · ${about.location}` : null]
-            .filter(Boolean)
-            .join(' — ')}
-        </p>
+        <div className="flex items-center gap-4">
+          {photoUrl ? (
+            <Image
+              src={photoUrl}
+              alt={siteTitle}
+              width={72}
+              height={72}
+              priority
+              className="size-18 shrink-0 rounded-full object-cover"
+            />
+          ) : null}
+          <div className="flex flex-col gap-1.5">
+            <p className="font-heading text-base font-semibold tracking-tight">{siteTitle}</p>
+            <p className="font-mono text-xs tracking-wide text-primary uppercase">
+              {[about?.availabilityStatus, about?.location ? `location · ${about.location}` : null]
+                .filter(Boolean)
+                .join(' — ')}
+            </p>
+          </div>
+        </div>
         <h1 className="max-w-2xl font-heading text-4xl font-bold tracking-tight sm:text-5xl">
           {about?.headline || "Content coming soon."}
         </h1>
