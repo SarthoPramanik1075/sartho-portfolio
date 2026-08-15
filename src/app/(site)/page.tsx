@@ -23,22 +23,22 @@ export default async function Home() {
   const siteTitle = settings?.siteTitle || "Sartho Pramanik";
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-24 px-6 py-20">
+    <div className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-20">
       {person ? <JsonLd data={person} /> : null}
-      <section className="flex flex-col gap-6">
-        <div className="flex items-center gap-4">
+      <section className="flex flex-col gap-10">
+        <div className="flex items-center gap-5">
           {photoUrl ? (
             <Image
               src={photoUrl}
               alt={siteTitle}
-              width={72}
-              height={72}
+              width={88}
+              height={88}
               priority
-              className="size-18 shrink-0 rounded-full object-cover"
+              className="size-22 shrink-0 rounded-full object-cover"
             />
           ) : null}
-          <div className="flex flex-col gap-1.5">
-            <p className="font-heading text-base font-semibold tracking-tight">{siteTitle}</p>
+          <div className="flex flex-col gap-2">
+            <p className="font-heading text-lg font-semibold tracking-tight">{siteTitle}</p>
             <p className="font-mono text-xs tracking-wide text-primary uppercase">
               {[about?.availabilityStatus, about?.location ? `location · ${about.location}` : null]
                 .filter(Boolean)
@@ -46,26 +46,28 @@ export default async function Home() {
             </p>
           </div>
         </div>
-        <h1 className="max-w-2xl font-heading text-4xl font-bold tracking-tight sm:text-5xl">
-          {about?.headline || "Content coming soon."}
-        </h1>
-        {about?.shortBio ? (
-          <p className="max-w-xl text-lg text-muted-foreground">{about.shortBio}</p>
-        ) : null}
-        <div className="flex flex-wrap gap-3 pt-2">
-          {about?.resumeFile?.asset?.url ? (
-            <Button
-              nativeButton={false}
-              render={
-                <a href={about.resumeFile.asset.url} target="_blank" rel="noopener noreferrer" />
-              }
-            >
-              Download Resume
-            </Button>
+        <div className="flex flex-col gap-5">
+          <h1 className="max-w-2xl font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+            {about?.headline || "Content coming soon."}
+          </h1>
+          {about?.shortBio ? (
+            <p className="max-w-xl text-lg text-muted-foreground">{about.shortBio}</p>
           ) : null}
-          <Button nativeButton={false} render={<Link href="/contact" />} variant="outline">
-            Get in touch
-          </Button>
+          <div className="flex flex-wrap gap-3 pt-2">
+            {about?.resumeFile?.asset?.url ? (
+              <Button
+                nativeButton={false}
+                render={
+                  <a href={about.resumeFile.asset.url} target="_blank" rel="noopener noreferrer" />
+                }
+              >
+                Download Resume
+              </Button>
+            ) : null}
+            <Button nativeButton={false} render={<Link href="/contact" />} variant="outline">
+              Get in touch
+            </Button>
+          </div>
         </div>
       </section>
 
