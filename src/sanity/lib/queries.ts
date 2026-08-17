@@ -47,6 +47,7 @@ export interface SiteSettings {
   defaultOgImage?: SanityImageValue
   favicon?: SanityImageValue
   contactEmail?: string
+  contactPhone?: string
   navLinks?: NavLink[]
   footerText?: string
   googleSiteVerification?: string
@@ -161,7 +162,7 @@ export const ABOUT_QUERY = groq`*[_type == "about"][0]{
 }`
 
 export const SITE_SETTINGS_QUERY = groq`*[_type == "siteSettings"][0]{
-  siteTitle, defaultSeoDescription, defaultOgImage, favicon, contactEmail,
+  siteTitle, defaultSeoDescription, defaultOgImage, favicon, contactEmail, contactPhone,
   navLinks[]{label, href}, footerText, googleSiteVerification
 }`
 

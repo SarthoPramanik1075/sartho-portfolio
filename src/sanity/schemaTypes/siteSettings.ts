@@ -12,6 +12,7 @@ export const siteSettings = defineType({
     defineField({ name: 'defaultOgImage', type: 'image' }),
     defineField({ name: 'favicon', type: 'image' }),
     defineField({ name: 'contactEmail', type: 'string' }),
+    defineField({ name: 'contactPhone', type: 'string', description: 'Optional. Shown on the Contact page if set.' }),
     defineField({
       name: 'navLinks',
       type: 'array',
