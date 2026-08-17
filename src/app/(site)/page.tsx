@@ -29,24 +29,24 @@ export default async function Home() {
     : null;
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-20">
+    <div className="mx-auto flex max-w-5xl flex-col gap-20 px-6 py-24 sm:py-28">
       {person ? <JsonLd data={person} /> : null}
-      <section className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-center sm:gap-12">
+      <section className="flex flex-col items-start gap-10 sm:flex-row sm:items-center sm:justify-center sm:gap-16">
         {photoUrl ? (
           <Image
             src={photoUrl}
             alt={siteTitle}
-            width={160}
-            height={160}
+            width={192}
+            height={192}
             priority
-            className="size-32 shrink-0 rounded-2xl object-cover sm:size-40"
+            className="size-40 shrink-0 rounded-2xl object-cover sm:size-48"
           />
         ) : null}
         <div className="flex flex-col gap-4">
-          <h1 className="font-heading text-7xl font-bold tracking-tight sm:text-8xl">
+          <h1 className="font-heading text-6xl font-bold tracking-tight sm:text-7xl">
             {siteTitle}
           </h1>
-          <p className="max-w-xl text-xl text-muted-foreground sm:text-2xl">{tagline}</p>
+          <p className="max-w-xl text-lg text-muted-foreground sm:text-xl">{tagline}</p>
           <div className="flex flex-wrap gap-3 pt-2">
             <Button nativeButton={false} render={<Link href="/contact" />}>
               Get In Touch
