@@ -23,6 +23,7 @@ export default async function Home() {
     ? urlFor(heroImageSource).width(320).height(320).fit("crop").url()
     : null;
   const siteTitle = settings?.siteTitle || "Sartho Pramanik";
+  const roleEyebrow = "Computer Science & Engineering Student";
   const tagline = "Software developer  |  ML enthusiast  |  Python, NumPy & Pandas  |  CSE student";
   const aboutPhotoUrl = about?.profilePhoto
     ? urlFor(about.profilePhoto).width(480).height(600).fit("crop").url()
@@ -31,7 +32,20 @@ export default async function Home() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-20 px-6 py-24 sm:py-28">
       {person ? <JsonLd data={person} /> : null}
-      <section className="flex flex-col items-start gap-10 sm:flex-row sm:items-center sm:justify-center sm:gap-16">
+      <section className="relative flex flex-col items-start gap-10 sm:flex-row sm:items-center sm:justify-center sm:gap-16">
+        <span
+          aria-hidden
+          className="pointer-events-none absolute top-0 right-2 hidden rounded-md border border-border/60 bg-secondary/40 px-2.5 py-1 font-mono text-[11px] text-muted-foreground/70 select-none xl:block"
+        >
+          print(&quot;Hello World!&quot;)
+        </span>
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-2 bottom-0 hidden rounded-md border border-border/60 bg-secondary/40 px-2.5 py-1 font-mono text-[11px] text-muted-foreground/70 select-none xl:block"
+        >
+          {"</>"}
+        </span>
+
         {photoUrl ? (
           <Image
             src={photoUrl}
@@ -43,6 +57,7 @@ export default async function Home() {
           />
         ) : null}
         <div className="flex flex-col gap-4">
+          <p className="font-mono text-sm font-medium text-primary">{roleEyebrow}</p>
           <h1 className="font-heading text-6xl font-bold tracking-tight sm:text-7xl">
             {siteTitle}
           </h1>
