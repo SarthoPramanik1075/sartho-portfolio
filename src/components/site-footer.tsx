@@ -1,12 +1,13 @@
 import { Mail } from 'lucide-react'
 import Link from 'next/link'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 
 import { getAbout, getSiteSettings } from '@/sanity/lib/queries'
 
 const SOCIAL_ICONS: Record<string, typeof FaGithub> = {
   GitHub: FaGithub,
   LinkedIn: FaLinkedin,
+  Facebook: FaFacebook,
 }
 
 export async function SiteFooter() {

@@ -1,6 +1,6 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 
 import { ContactForm } from "@/components/contact-form";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -14,6 +14,7 @@ export const metadata = pageMetadata({
 const SOCIAL_ICONS: Record<string, typeof FaGithub> = {
   GitHub: FaGithub,
   LinkedIn: FaLinkedin,
+  Facebook: FaFacebook,
 };
 
 export default async function ContactPage() {
