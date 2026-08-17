@@ -1,5 +1,6 @@
-import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import { ContactForm } from "@/components/contact-form";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -9,6 +10,11 @@ export const metadata = pageMetadata({
   title: "Contact",
   description: "Get in touch by email or social media.",
 });
+
+const SOCIAL_ICONS: Record<string, typeof FaGithub> = {
+  GitHub: FaGithub,
+  LinkedIn: FaLinkedin,
+};
 
 export default async function ContactPage() {
   const [settings, about] = await Promise.all([getSiteSettings(), getAbout()]);
@@ -28,7 +34,7 @@ export default async function ContactPage() {
         <div className="flex flex-col gap-6">
           {email ? (
             <div className="flex items-center gap-4">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
                 <Mail className="size-5" />
               </span>
               <div className="flex flex-col">
@@ -42,19 +48,19 @@ export default async function ContactPage() {
 
           {about?.location ? (
             <div className="flex items-center gap-4">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
                 <MapPin className="size-5" />
               </span>
               <div className="flex flex-col">
-                <span className="font-medium">Location</span>
-                <span className="text-muted-foreground">{about.location}</span>
+                <span className="font-medium">Address</span>
+                <span className="text-primary">{about.location}</span>
               </div>
             </div>
           ) : null}
 
           {settings?.contactPhone ? (
             <div className="flex items-center gap-4">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
                 <Phone className="size-5" />
               </span>
               <div className="flex flex-col">
@@ -74,18 +80,21 @@ export default async function ContactPage() {
 
           {about?.socialLinks?.length ? (
             <div className="flex flex-wrap gap-3 pt-2">
-              {about.socialLinks.map((link) => (
-                <Link
-                  key={link.platform}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-                >
-                  <ExternalLink className="size-4" />
-                  {link.platform}
-                </Link>
-              ))}
+              {about.socialLinks.map((link) => {
+                const Icon = SOCIAL_ICONS[link.platform];
+                return (
+                  <Link
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.platform}
+                    className="flex size-10 items-center justify-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                  >
+                    {Icon ? <Icon className="size-4" /> : link.platform}
+                  </Link>
+                );
+              })}
             </div>
           ) : null}
         </div>

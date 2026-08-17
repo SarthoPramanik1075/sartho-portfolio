@@ -1,7 +1,13 @@
-import { ExternalLink, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import Link from 'next/link'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
 import { getAbout, getSiteSettings } from '@/sanity/lib/queries'
+
+const SOCIAL_ICONS: Record<string, typeof FaGithub> = {
+  GitHub: FaGithub,
+  LinkedIn: FaLinkedin,
+}
 
 export async function SiteFooter() {
   const [settings, about] = await Promise.all([getSiteSettings(), getAbout()])
@@ -22,18 +28,21 @@ export async function SiteFooter() {
               Email
             </Link>
           ) : null}
-          {about?.socialLinks?.map((link) => (
-            <Link
-              key={link.platform}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 rounded-full bg-secondary px-3.5 py-1.5 text-xs text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-            >
-              <ExternalLink className="size-3.5" />
-              {link.platform}
-            </Link>
-          ))}
+          {about?.socialLinks?.map((link) => {
+            const Icon = SOCIAL_ICONS[link.platform]
+            return (
+              <Link
+                key={link.platform}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 rounded-full bg-secondary px-3.5 py-1.5 text-xs text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                {Icon ? <Icon className="size-3.5" /> : null}
+                {link.platform}
+              </Link>
+            )
+          })}
         </div>
       </div>
     </footer>
