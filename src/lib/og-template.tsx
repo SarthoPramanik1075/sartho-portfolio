@@ -19,9 +19,9 @@ export function OgCard({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundColor: "#0b0f14",
+        backgroundColor: "#0f1a3d",
         padding: "80px",
-        color: "#e7ecf2",
+        color: "#e6edf7",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -61,7 +61,7 @@ export function OgCard({
               fontWeight: 500,
               fontSize: 30,
               lineHeight: 1.4,
-              color: "#8792a0",
+              color: "#8fa2c2",
               maxWidth: 900,
             }}
           >
