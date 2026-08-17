@@ -20,7 +20,18 @@ export const about = defineType({
       rows: 3,
       description: 'Used as fallback meta description on /about',
     }),
-    defineField({ name: 'profilePhoto', type: 'image', options: { hotspot: true } }),
+    defineField({
+      name: 'profilePhoto',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Used on the About page',
+    }),
+    defineField({
+      name: 'heroPhoto',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Used in the homepage hero. Falls back to Profile Photo if left empty.',
+    }),
     defineField({ name: 'resumeFile', type: 'file', description: 'Downloadable PDF resume' }),
     defineField({
       name: 'personaHighlights',

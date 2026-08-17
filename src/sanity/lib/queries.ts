@@ -28,6 +28,7 @@ export interface About {
   bio?: PortableTextBlock[]
   shortBio?: string
   profilePhoto?: SanityImageValue
+  heroPhoto?: SanityImageValue
   resumeFile?: { asset?: { url: string } }
   personaHighlights?: PersonaHighlight[]
   socialLinks?: SocialLink[]
@@ -152,7 +153,7 @@ const PROJECT_CARD_FIELDS = groq`
 `
 
 export const ABOUT_QUERY = groq`*[_type == "about"][0]{
-  headline, bio, shortBio, profilePhoto,
+  headline, bio, shortBio, profilePhoto, heroPhoto,
   resumeFile{asset->{url}},
   personaHighlights[]{audience, blurb},
   socialLinks[]{platform, url},
