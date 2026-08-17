@@ -56,7 +56,7 @@ export default async function ResumePage() {
       </div>
 
       <div className="flex flex-col gap-1">
-        <h1 className="font-heading text-3xl font-semibold tracking-tight">
+        <h1 className="font-heading text-4xl font-semibold tracking-tight">
           {settings?.siteTitle || "Sartho Pramanik"}
         </h1>
         {about?.headline ? <p className="text-muted-foreground">{about.headline}</p> : null}

@@ -43,10 +43,10 @@ export default async function Home() {
           />
         ) : null}
         <div className="flex flex-col gap-4">
-          <h1 className="font-heading text-6xl font-bold tracking-tight sm:text-7xl">
+          <h1 className="font-heading text-7xl font-bold tracking-tight sm:text-8xl">
             {siteTitle}
           </h1>
-          <p className="max-w-xl text-lg text-muted-foreground sm:text-xl">{tagline}</p>
+          <p className="max-w-xl text-xl text-muted-foreground sm:text-2xl">{tagline}</p>
           <div className="flex flex-wrap gap-3 pt-2">
             <Button nativeButton={false} render={<Link href="/contact" />}>
               Get In Touch
@@ -58,7 +58,7 @@ export default async function Home() {
       {about?.bio?.length ? (
         <section className="flex flex-col gap-10">
           <div className="flex flex-col items-center gap-3 text-center">
-            <h2 className="font-heading text-3xl font-bold tracking-tight">About Me</h2>
+            <h2 className="font-heading text-4xl font-bold tracking-tight">About Me</h2>
             <span className="h-1 w-16 rounded-full bg-primary" />
             <p className="text-muted-foreground">Get to know me better</p>
           </div>

@@ -61,7 +61,7 @@ export default async function ProjectDetailPage(props: PageProps<"/projects/[slu
           ))}
           {project.status ? <Badge variant="outline">{project.status}</Badge> : null}
         </div>
-        <h1 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h1 className="font-heading text-4xl font-semibold tracking-tight sm:text-5xl">
           {project.title}
         </h1>
         <p className="text-lg text-muted-foreground">{project.summary}</p>

@@ -37,7 +37,7 @@ export default async function AboutPage() {
     <div className="mx-auto flex max-w-5xl flex-col gap-14 px-6 py-20">
       {person ? <JsonLd data={person} /> : null}
       <div className="flex flex-col items-center gap-3 text-center">
-        <h1 className="font-heading text-4xl font-bold tracking-tight">About Me</h1>
+        <h1 className="font-heading text-5xl font-bold tracking-tight">About Me</h1>
         <span className="h-1 w-16 rounded-full bg-primary" />
         <p className="text-muted-foreground">Get to know me better</p>
       </div>

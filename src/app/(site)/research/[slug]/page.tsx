@@ -53,7 +53,7 @@ export default async function ResearchDetailPage(props: PageProps<"/research/[sl
             <span className="text-muted-foreground">{formatMonthYear(entry.date)}</span>
           ) : null}
         </div>
-        <h1 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h1 className="font-heading text-4xl font-semibold tracking-tight sm:text-5xl">
           {entry.title}
         </h1>
         {entry.authors?.length ? (

@@ -22,7 +22,7 @@ export default async function ProjectsPage(props: PageProps<"/projects">) {
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-20">
-      <h1 className="font-heading text-3xl font-medium tracking-tight">Projects</h1>
+      <h1 className="font-heading text-4xl font-medium tracking-tight">Projects</h1>
 
       <div className="flex flex-wrap gap-2 font-mono text-xs">
         <Link

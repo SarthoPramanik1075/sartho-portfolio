@@ -14,7 +14,7 @@ export default async function AchievementsPage() {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-10 px-6 py-20">
-      <h1 className="font-heading text-3xl font-semibold tracking-tight">Achievements</h1>
+      <h1 className="font-heading text-4xl font-semibold tracking-tight">Achievements</h1>
 
       {achievements.length === 0 ? (
         <p className="text-sm text-muted-foreground">

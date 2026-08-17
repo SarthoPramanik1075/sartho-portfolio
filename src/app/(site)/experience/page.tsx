@@ -17,7 +17,7 @@ export default async function ExperiencePage() {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-12 px-6 py-20">
-      <h1 className="font-heading text-3xl font-semibold tracking-tight">Experience</h1>
+      <h1 className="font-heading text-4xl font-semibold tracking-tight">Experience</h1>
 
       {experience.length === 0 ? (
         <p className="text-sm text-muted-foreground">
