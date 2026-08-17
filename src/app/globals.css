@@ -149,3 +149,19 @@
     @apply font-heading tracking-tight;
   }
 }
+
+@keyframes pulse-node {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-pulse-node {
+    animation: pulse-node 2.6s ease-in-out infinite;
+  }
+}

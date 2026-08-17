@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { JsonLd } from "@/components/json-ld";
+import { NeuralNetBackdrop } from "@/components/neural-net-backdrop";
 import { ProjectCard } from "@/components/project-card";
 import { RichText } from "@/components/rich-text";
 import { personJsonLd } from "@/lib/json-ld";
@@ -22,7 +23,7 @@ export default async function Home() {
     ? urlFor(about.profilePhoto).width(320).height(320).fit("crop").url()
     : null;
   const siteTitle = settings?.siteTitle || "Sartho Pramanik";
-  const tagline = "💻 Software developer  |  🤖 ML enthusiast  |  🐍 Python, NumPy & Pandas  |  🎓 CSE student";
+  const tagline = "Software developer  |  ML enthusiast  |  Python, NumPy & Pandas  |  CSE student";
   const statusLine = [about?.availabilityStatus, about?.location].filter(Boolean).join(" · ");
   const aboutPhotoUrl = about?.profilePhoto
     ? urlFor(about.profilePhoto).width(480).height(600).fit("crop").url()
@@ -31,7 +32,8 @@ export default async function Home() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-20">
       {person ? <JsonLd data={person} /> : null}
-      <section className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-12">
+      <section className="relative flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-12">
+        <NeuralNetBackdrop />
         {photoUrl ? (
           <Image
             src={photoUrl}
@@ -51,10 +53,7 @@ export default async function Home() {
             <p className="max-w-xl text-muted-foreground">{about.shortBio}</p>
           ) : null}
           <div className="flex flex-wrap gap-3 pt-2">
-            <Button nativeButton={false} render={<Link href="/projects" />}>
-              View My Work
-            </Button>
-            <Button nativeButton={false} render={<Link href="/contact" />} variant="outline">
+            <Button nativeButton={false} render={<Link href="/contact" />}>
               Get In Touch
             </Button>
           </div>
