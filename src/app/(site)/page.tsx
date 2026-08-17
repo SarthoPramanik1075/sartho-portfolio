@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { JsonLd } from "@/components/json-ld";
-import { NeuralNetBackdrop } from "@/components/neural-net-backdrop";
 import { ProjectCard } from "@/components/project-card";
 import { RichText } from "@/components/rich-text";
 import { personJsonLd } from "@/lib/json-ld";
@@ -25,7 +24,6 @@ export default async function Home() {
     : null;
   const siteTitle = settings?.siteTitle || "Sartho Pramanik";
   const tagline = "Software developer  |  ML enthusiast  |  Python, NumPy & Pandas  |  CSE student";
-  const statusLine = [about?.availabilityStatus, about?.location].filter(Boolean).join(" · ");
   const aboutPhotoUrl = about?.profilePhoto
     ? urlFor(about.profilePhoto).width(480).height(600).fit("crop").url()
     : null;
@@ -33,22 +31,7 @@ export default async function Home() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-20">
       {person ? <JsonLd data={person} /> : null}
-      <section className="relative flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-center sm:gap-12">
-        <NeuralNetBackdrop />
-        <span
-          aria-hidden
-          className="animate-float-y pointer-events-none absolute top-2 right-6 hidden rounded-md border border-border/60 bg-secondary/40 px-2.5 py-1 font-mono text-[11px] text-muted-foreground/70 select-none sm:block"
-        >
-          model.fit(X, y)
-        </span>
-        <span
-          aria-hidden
-          style={{ animationDelay: "1.3s" }}
-          className="animate-float-y pointer-events-none absolute right-16 bottom-6 hidden rounded-md border border-border/60 bg-secondary/40 px-2.5 py-1 font-mono text-[11px] text-muted-foreground/70 select-none lg:block"
-        >
-          accuracy: 96%
-        </span>
-
+      <section className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-center sm:gap-12">
         {photoUrl ? (
           <Image
             src={photoUrl}
@@ -72,12 +55,6 @@ export default async function Home() {
               Get In Touch
             </Button>
           </div>
-          {statusLine ? (
-            <p className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="size-1.5 rounded-full bg-emerald-500" />
-              {statusLine}
-            </p>
-          ) : null}
         </div>
       </section>
 
