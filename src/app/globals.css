@@ -50,15 +50,15 @@
 
 :root {
   --background: #e9f1fb;
-  --foreground: #0f2138;
+  --foreground: #000000;
   --card: #f6faff;
-  --card-foreground: #0f2138;
+  --card-foreground: #000000;
   --popover: #f6faff;
-  --popover-foreground: #0f2138;
+  --popover-foreground: #000000;
   --primary: #2f5fd6;
   --primary-foreground: #f6faff;
   --secondary: #dbe7f8;
-  --secondary-foreground: #0f2138;
+  --secondary-foreground: #000000;
   --muted: #dbe7f8;
   --muted-foreground: #4c6285;
   --accent: #d6e5fa;
@@ -85,19 +85,19 @@
 
 .dark {
   --background: #0f1a3d;
-  --foreground: #e6edf7;
+  --foreground: #ffffff;
   --card: #16234f;
-  --card-foreground: #e6edf7;
+  --card-foreground: #ffffff;
   --popover: #16234f;
-  --popover-foreground: #e6edf7;
+  --popover-foreground: #ffffff;
   --primary: #5b8fff;
   --primary-foreground: #0f1a3d;
   --secondary: #1b2c58;
-  --secondary-foreground: #e6edf7;
+  --secondary-foreground: #ffffff;
   --muted: #1b2c58;
   --muted-foreground: #8fa2c2;
   --accent: #1b2c58;
-  --accent-foreground: #e6edf7;
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.704 0.191 22.216);
   --border: #253a68;
   --input: #253a68;
