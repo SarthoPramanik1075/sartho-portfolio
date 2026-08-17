@@ -47,9 +47,6 @@ export default async function Home() {
             {siteTitle}
           </h1>
           <p className="max-w-xl text-base text-muted-foreground sm:text-lg">{tagline}</p>
-          {about?.shortBio ? (
-            <p className="max-w-xl text-lg text-muted-foreground">{about.shortBio}</p>
-          ) : null}
           <div className="flex flex-wrap gap-3 pt-2">
             <Button nativeButton={false} render={<Link href="/contact" />}>
               Get In Touch
