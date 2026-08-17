@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
+import { RichText } from "@/components/rich-text";
 import { personJsonLd } from "@/lib/json-ld";
 import { getSiteUrl } from "@/lib/site-config";
 import { urlFor } from "@/sanity/lib/image";
@@ -23,6 +24,9 @@ export default async function Home() {
   const siteTitle = settings?.siteTitle || "Sartho Pramanik";
   const tagline = "💻 Software developer  |  🤖 ML enthusiast  |  🐍 Python, NumPy & Pandas  |  🎓 CSE student";
   const statusLine = [about?.availabilityStatus, about?.location].filter(Boolean).join(" · ");
+  const aboutPhotoUrl = about?.profilePhoto
+    ? urlFor(about.profilePhoto).width(480).height(600).fit("crop").url()
+    : null;
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-20">
@@ -63,22 +67,39 @@ export default async function Home() {
         </div>
       </section>
 
-      {about?.personaHighlights?.length ? (
-        <section className="flex flex-col">
-          <p className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
-            who this is for
-          </p>
-          {about.personaHighlights.map((highlight) => (
-            <div
-              key={highlight.audience}
-              className="flex flex-col gap-1 border-t border-border/60 py-5 first:border-t-0 sm:flex-row sm:gap-6"
-            >
-              <h2 className="shrink-0 font-mono text-xs text-primary sm:w-28">
-                {highlight.audience.toLowerCase()}
-              </h2>
-              <p className="text-sm text-muted-foreground">{highlight.blurb}</p>
+      {about?.bio?.length ? (
+        <section className="flex flex-col gap-10">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <h2 className="font-heading text-3xl font-bold tracking-tight">About Me</h2>
+            <span className="h-1 w-16 rounded-full bg-primary" />
+            <p className="text-muted-foreground">Get to know me better</p>
+          </div>
+
+          <div className="grid gap-10 sm:grid-cols-2 sm:items-start">
+            <div className="order-2 flex flex-col gap-4 sm:order-1">
+              <RichText value={about.bio} />
+              <Link
+                href="/about"
+                className="w-fit text-sm text-primary underline underline-offset-4"
+              >
+                More about me →
+              </Link>
             </div>
-          ))}
+
+            {aboutPhotoUrl ? (
+              <div className="relative order-1 sm:order-2">
+                <Image
+                  src={aboutPhotoUrl}
+                  alt={siteTitle}
+                  width={480}
+                  height={600}
+                  className="aspect-4/5 w-full rounded-2xl object-cover"
+                />
+                <span className="absolute top-1/2 -left-2 size-3 rounded-full bg-primary" />
+                <span className="absolute top-1/2 -left-6 size-1.5 rounded-full bg-primary/50" />
+              </div>
+            ) : null}
+          </div>
         </section>
       ) : null}
 

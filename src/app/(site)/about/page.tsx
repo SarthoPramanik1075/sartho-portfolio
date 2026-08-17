@@ -42,7 +42,7 @@ export default async function AboutPage() {
         <p className="text-muted-foreground">Get to know me better</p>
       </div>
 
-      <div className="grid gap-10 sm:grid-cols-2 sm:items-center">
+      <div className="grid gap-10 sm:grid-cols-2 sm:items-start">
         <div className="order-2 flex flex-col gap-6 sm:order-1">
           <div className="flex flex-col gap-1.5">
             <p className="font-heading text-lg font-semibold tracking-tight">{about.headline}</p>
